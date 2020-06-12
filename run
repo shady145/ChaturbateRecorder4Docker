@@ -2,4 +2,4 @@
 
 cd /ChaturbateRecorder-master
 cp /mnt/ChaturbateRecorder/config.conf .
-python ChaturbateRecorder.py
+python3 ChaturbateRecorder.py
