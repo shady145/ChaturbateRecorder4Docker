@@ -11,6 +11,7 @@ Config = configparser.ConfigParser()
 Config.read(sys.path[0] + "/config.conf")
 save_directory = Config.get('paths', 'save_directory')
 wishlist = Config.get('paths', 'wishlist')
+logfilename = Config.get('paths', 'logfile')
 interval = int(Config.get('settings', 'checkInterval'))
 genders = re.sub(' ', '', Config.get('settings', 'genders')).split(",")
 directory_structure = Config.get('paths', 'directory_structure').lower()
@@ -137,14 +138,18 @@ if __name__ == '__main__':
             t.start()
     # print ascii escape character to move the cursor in bash, we will not use this in our Docker image
     #sys.stdout.write("\033[F")
-    print(now(), " Starting ChaturbateRecorder4Docker")
+    logfile = open(logfilename, "a+")
+    logfile.write(now() + " ########## Starting ChaturbateRecorder4Docker ##########\n")
+    logfile.close()
     recordingModels = []
     while True:
         #sys.stdout.write("\033[K")
         getOnlineModels()
         print(now(), " The following models are being recorded: {}".format(recording), end="\r")
         if onlineModelsIsChanged(recordingModels, recording):
-            print(now(), " The following models are being recorded: {}".format(recording), end="\r")
+            logfile = open(logfilename, "a+")
+            logfile.write(now() + " The following models are being recorded: {}".format(recording))
+            logfile.close()
 #            print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))        
             recordingModels = recording
 #        sys.stdout.write("\033[K")
