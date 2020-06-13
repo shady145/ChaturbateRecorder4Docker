@@ -145,10 +145,10 @@ if __name__ == '__main__':
     while True:
         #sys.stdout.write("\033[K")
         getOnlineModels()
-        print(now(), " The following models are being recorded: {}".format(recording), end="\r")
+#        print(now(), " The following models are being recorded: {}".format(recording), end="\r")
         if onlineModelsIsChanged(recordingModels, recording):
             logfile = open(logfilename, "a+")
-            logfile.write(now() + " The following models are being recorded: {}".format(recording))
+            logfile.write(now() + " The following models are being recorded: {}\n".format(recording))
             logfile.close()
 #            print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))        
             recordingModels = recording
