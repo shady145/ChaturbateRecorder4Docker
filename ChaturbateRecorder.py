@@ -111,7 +111,6 @@ def getOnlineModels():
             thread = Thread(target=startRecording, args=(theModel,))
             thread.start()
     f.close()
-    return online
 
 def onlineModelsIsChanged(previousOnlineModels, newOnlineModels):
     if (len(previousOnlineModels) != len(newOnlineModels)):
@@ -139,14 +138,14 @@ if __name__ == '__main__':
     # print ascii escape character to move the cursor in bash, we will not use this in our Docker image
     #sys.stdout.write("\033[F")
     print(now(), " Starting ChaturbateRecorder4Docker")
-    previousOnlineModels = []
+    recordingModels = []
     while True:
         #sys.stdout.write("\033[K")
-        newOnlineModels = getOnlineModels()
-        if onlineModelsIsChanged(previousOnlineModels, newOnlineModels):
+        getOnlineModels()
+        if onlineModelsIsChanged(recordingModels, recording):
             print(now(), " The following models are being recorded: {}".format(recording), end="\r")
 #            print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))        
-            previousOnlineModels = newOnlineModels
+            recordingModels = recording
 #        sys.stdout.write("\033[K")
 #        getOnlineModels()
 #        sys.stdout.write("\033[F")
