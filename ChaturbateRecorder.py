@@ -115,10 +115,10 @@ def getOnlineModels():
 
 def onlineModelsIsChanged(previousOnlineModels, newOnlineModels):
     changed = false
-    if (len(previousOnlineModels) != len(newOnlineModels):
+    if (len(previousOnlineModels) != len(newOnlineModels)):
         return true
     for i in range(len(previousOnlineModels)):
-        if (previousOnlineModels[i] != newOnlineModels[i]:
+        if (previousOnlineModels[i] != newOnlineModels[i]):
             return true
     return changed
 
