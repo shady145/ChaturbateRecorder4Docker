@@ -155,5 +155,5 @@ if __name__ == '__main__':
 #            print(now(), "{} model(s) are being recorded. Next check in {} seconds".format(len(recording), i))
 #            sys.stdout.write("\033[K")
 #            print("The following models are being recorded: {}".format(recording), end="\r")
-         time.sleep(interval)
+        time.sleep(interval)
 #            sys.stdout.write("\033[F")
