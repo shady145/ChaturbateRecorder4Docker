@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # print ascii escape character to move the cursor in bash, we will not use this in our Docker image
     #sys.stdout.write("\033[F")
     logfile = open(logfilename, "a+")
-    logfile.write(now() + " ########## Starting ChaturbateRecorder4Docker ##########\n")
+    logfile.write("\n\n" + now() + " ########## Starting ChaturbateRecorder4Docker ##########\n")
     logfile.close()
     recordingModels = []
     while True:
