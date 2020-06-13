@@ -142,6 +142,7 @@ if __name__ == '__main__':
     while True:
         #sys.stdout.write("\033[K")
         getOnlineModels()
+        print(now(), " The following models are being recorded: {}".format(recording), end="\r")
         if onlineModelsIsChanged(recordingModels, recording):
             print(now(), " The following models are being recorded: {}".format(recording), end="\r")
 #            print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))        
@@ -149,10 +150,10 @@ if __name__ == '__main__':
 #        sys.stdout.write("\033[K")
 #        getOnlineModels()
 #        sys.stdout.write("\033[F")
-        for i in range(interval, 0, -1):
+#        for i in range(interval, 0, -1):
 #            sys.stdout.write("\033[K")
 #            print(now(), "{} model(s) are being recorded. Next check in {} seconds".format(len(recording), i))
 #            sys.stdout.write("\033[K")
 #            print("The following models are being recorded: {}".format(recording), end="\r")
-            time.sleep(1)
+         time.sleep(interval)
 #            sys.stdout.write("\033[F")
