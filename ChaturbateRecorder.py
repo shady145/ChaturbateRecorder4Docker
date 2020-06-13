@@ -111,7 +111,16 @@ def getOnlineModels():
             thread = Thread(target=startRecording, args=(theModel,))
             thread.start()
     f.close()
+    return online
 
+def onlineModelsIsChanged(previousOnlineModels, newOnlineModels):
+    changed = false
+    if (len(previousOnlineModels) != len(newOnlineModels):
+        return true
+    for i in range(len(previousOnlineModels)):
+        if (previousOnlineModels[i] != newOnlineModels[i]:
+            return true
+    return changed
 
 if __name__ == '__main__':
     AllowedGenders = ['female', 'male', 'trans', 'couple']
@@ -128,18 +137,24 @@ if __name__ == '__main__':
             t = Thread(target=postProcess)
             postprocessingWorkers.append(t)
             t.start()
-    sys.stdout.write("\033[F")
+    # print ascii escape character to move the cursor in bash, we will not use this in our Docker image
+    #sys.stdout.write("\033[F")
+    print(now(), " Starting ChaturbateRecorder4Docker")
+    previousOnlineModels = []
     while True:
-        sys.stdout.write("\033[K")
-        print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))
-        sys.stdout.write("\033[K")
-        print("The following models are being recorded: {}".format(recording), end="\r")
-        getOnlineModels()
-        sys.stdout.write("\033[F")
+        #sys.stdout.write("\033[K")
+        newOnlineModels = getOnlineModels()
+        if onlineModelsIsChanged(previousOnlineModels, newOnlineModels):
+            print(now(), " The following models are being recorded: {}".format(recording), end="\r")
+#            print( now(),"{} model(s) are being recorded. Getting list of online models now".format(len(recording)))        
+            previousOnlineModels = newOnlineModels
+#        sys.stdout.write("\033[K")
+#        getOnlineModels()
+#        sys.stdout.write("\033[F")
         for i in range(interval, 0, -1):
-            sys.stdout.write("\033[K")
-            print(now(), "{} model(s) are being recorded. Next check in {} seconds".format(len(recording), i))
-            sys.stdout.write("\033[K")
-            print("The following models are being recorded: {}".format(recording), end="\r")
+#            sys.stdout.write("\033[K")
+#            print(now(), "{} model(s) are being recorded. Next check in {} seconds".format(len(recording), i))
+#            sys.stdout.write("\033[K")
+#            print("The following models are being recorded: {}".format(recording), end="\r")
             time.sleep(1)
-            sys.stdout.write("\033[F")
+#            sys.stdout.write("\033[F")
