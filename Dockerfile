@@ -3,6 +3,7 @@
 # to `latest`! See
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
+MAINTAINER shady145
 FROM phusion/baseimage:master-amd64
 
 ARG PROGRAM_NAME=ChaturbateRecorder4Docker
