@@ -27,4 +27,6 @@ RUN apt install python3 python3-pip unzip wget -y && \
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME /config
+
 ENTRYPOINT /ChaturbateRecorder/run
