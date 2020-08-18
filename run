@@ -1,5 +1,4 @@
 #!/bin/bash
 
 cd /ChaturbateRecorder
-cp /mnt/ChaturbateRecorder/config.conf .
 python3 ChaturbateRecorder.py
